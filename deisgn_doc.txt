@@ -1,0 +1,51 @@
+Desired Product:  Dashboard that quickly and effectively updates key 
+stakeholders on New York City's CitiBike program.  Dashboard sections 
+per stakeholder requirements will include about 15 key visualizations, 
+two specifically-requested maps, and two special features.  The desired 
+frequency is monthly, coinciding with the monthly operating report release.
+(The latest release is May 2019).  
+
+Rationale:  Why This?  Although key statistics are provided in monthly 
+written reports currently, key stakeholders need a faster way to 
+consume the information in order to stay informed about the program.
+
+Why Us?  Expertise with Tableau enables us to build this product quickly 
+and effectively.
+
+Why Now?  After five years in operation, the "newness" of the program is 
+wearing off.  As a result, more effort is needed to maintain stakeholder 
+attention, especially since the program will likely still face some 
+growing pains that require significant stakeholder attention.
+
+
+
+Key Visualizations:
+
+1) Daily average trip growth -- a simple bar graph with values to emphasize 
+that the program is still in its growth phase.  To reduce clutter,
+values will be tool-tips.  The caption will put the year-over-year growth
+number.  Comparisons will be seasonally adjusted.
+
+Data strategy:  Download quarterly csv files for past five years plus current year,
+union in Tableau.  
+
+Communication strategy: Average daily rides communicates the scale of the program.  On 
+a monthly basis, it is subject to seasonality and variations in weekday / weekend 
+prevalence.  The message we want to get across is that this program continues to 
+grow, and based on its recent past, it can grow a lot and impact the city, so it 
+deserves attention.
+
+
+
+
+
+
+
+
+Data cleaning:
+
+Quarterly data for q2 2019 (daily summary) has an extra column "Column1" (undefined
+entered in all rows) -- this column was manually deleted because Tableau could 
+not merge with other years when it was present
+
+
