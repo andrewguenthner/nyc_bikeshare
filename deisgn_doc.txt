@@ -26,7 +26,7 @@ that the program is still in its growth phase.  To reduce clutter,
 values will be tool-tips.  The caption will put the year-over-year growth
 number.  Comparisons will be seasonally adjusted.
 
-Data strategy:  Download quarterly csv files for past five years plus current year,
+Data strategy:  Download Q2 csv files for past five years plus current year,
 union in Tableau.  
 
 Communication strategy: Average daily rides communicates the scale of the program.  On 
@@ -34,6 +34,23 @@ a monthly basis, it is subject to seasonality and variations in weekday / weeken
 prevalence.  The message we want to get across is that this program continues to 
 grow, and based on its recent past, it can grow a lot and impact the city, so it 
 deserves attention.
+
+2) Year over year trip and subscriber growth, year-to-date -- dual line graph 
+with synchronized axes showing year-over-year growth in each month.  Averages
+shown in caption.
+
+Data strategy:  Download quarterly csv files for past six quarters, union in Tableau.
+
+Communication strategy:  May YoY growth in trips is unusually low compared to other 
+months in 2019.  We want to remind people that subscriber growth is a steady 
+15-20% YoY, and that in some months we've seen 35% YoY growth.  In other words, 
+big growth (and big impacts) are still on the way ...
+
+3) 
+
+4)
+
+5)
 
 
 
