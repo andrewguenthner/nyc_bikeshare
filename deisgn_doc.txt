@@ -1,7 +1,7 @@
 Desired Product:  Dashboard that quickly and effectively updates key 
 stakeholders on New York City's CitiBike program.  Dashboard sections 
 per stakeholder requirements will include about 15 key visualizations, 
-two specifically-requested maps, and two special features.  The desired 
+with one specifically-requested map, and two special features.  The desired 
 frequency is monthly, coinciding with the monthly operating report release.
 (The latest release is May 2019).  
 
@@ -15,42 +15,227 @@ and effectively.
 Why Now?  After five years in operation, the "newness" of the program is 
 wearing off.  As a result, more effort is needed to maintain stakeholder 
 attention, especially since the program will likely still face some 
-growing pains that require significant stakeholder attention.
+growing pains that require significant stakeholder action.  
 
+Communication Strategy:
 
+The three key messages we want to convey are:
+1)  The program is still growing and changing significantly -- so 
+stakeholders need ot pay attention to it.  Because our stakeholders are
+principally in government, we want to address the pain point of the fear of
+surprise.
+2)  The program is operating well but faces challenges -- so that stakeholders 
+wish to continue their association, and are willing to commit resources to 
+overcome obstacles.  We want to address the pain point of the fear of being 
+on board a sinking ship.
+3) The pgoram has quantified benefits -- so that stakeholders find it easy 
+to take credit in a strong way.  We want to provide a variety of arguments 
+for supporting the program that stakeholders can make quantitatively.
+
+Layout:  The key layout will be a dashboard with five pages.
+Pages 1 and 2 will address our #1 communication goal
+Page 3 will address goal #2
+Page 4 will address goal #3
+Page 5 will address a "special topic" (this was requested specifically)
+
+A specific map has been requested relateing to the program operation, so that 
+map will go on page 3, which covers the operations topic.
+
+For each page, there will be about 3 visualizations -- the front page will have
+fewer, larger visualizations to better emphasize pooint #1, which will get 
+two pages because of its importance. 
+
+Although we might normally give higher priority to communicating the benefits of 
+the program, because the program has been around for some time and most stakeholders 
+have been exposed to it repeatedly, the benefits are already well known.  The benefits 
+therefore are more of a reminder for most stakeholders, whereas the "latest" will 
+be more attention-getting.  
 
 Key Visualizations:
+
+Page 1:  Growth Is Happening!
 
 1) Daily average trip growth -- a simple bar graph with values to emphasize 
 that the program is still in its growth phase.  To reduce clutter,
 values will be tool-tips.  The caption will put the year-over-year growth
 number.  Comparisons will be seasonally adjusted.
 
-Data strategy:  Download Q2 csv files for past five years plus current year,
-union in Tableau.  
+Data strategy:  Download Q2 csv daily summary files for past five years plus current year,
+use union to import to Tableau, have Tableau aggregate
 
 Communication strategy: Average daily rides communicates the scale of the program.  On 
 a monthly basis, it is subject to seasonality and variations in weekday / weekend 
 prevalence.  The message we want to get across is that this program continues to 
-grow, and based on its recent past, it can grow a lot and impact the city, so it 
-deserves attention.
+grow, and based on its recent past, it can grow a lot.
 
 2) Year over year trip and subscriber growth, year-to-date -- dual line graph 
-with synchronized axes showing year-over-year growth in each month.  Averages
-shown in caption.
+with synchronized axes showing year-over-year growth in each month.  
 
-Data strategy:  Download quarterly csv files for past six quarters, union in Tableau.
+Data strategy:  Download quarterly csv daily summary files for Q1 and Q2 2018 and 2019, merge 
+via union in Tabluea.  Tableau will aggregate.  
 
 Communication strategy:  May YoY growth in trips is unusually low compared to other 
 months in 2019.  We want to remind people that subscriber growth is a steady 
 15-20% YoY, and that in some months we've seen 35% YoY growth.  In other words, 
 big growth (and big impacts) are still on the way ...
 
-3) 
+Page 2:  When and Where is Growth Happening?  
 
-4)
+3) Year-over-year growth map.  Use divergent color to distinguish stations 
+with trip growth vs those with a decline.  
 
-5)
+Date strategy:  Analyze individual trip data for previous month and year-ago month. 
+Use a Jupyter notebook to make an ETL pipeline that provides an hourly summary by station. 
+Doing so will reduce the size of the ride dataset from about 2 million rows to about 
+300k.  The smaller size makes it much faster for Tableau to handle.  The hourly 
+datasets can be imported into Tableau via union and analyzed there.  
+
+Communication strategy:  A geographic breakdown helps officials know where to 
+deploy resources.  In particular, we want to show that some parts of the city are 
+experiencing rapid growth, so even though overall growth is 5-30% per year, in some 
+parts of the city, growth is rapid and there is potential for rapidly changing impacts.
+
+4) Comparison of usage times:  Two line graphs, one for weekdays and one for weekends, 
+that show total trips based on the hour of the day.  Each graph compares the pattern 
+in the current year vs the previous year.  
+
+We will not have actions on this page, because we don't want the users to stop 
+and explore here, we want them to move on and get our other messages... 
+
+Data strategy:  Uses the same hourly data from before (trips are defined based on 
+where and when they start).  With hourly data, Tableau can aggregate easily.
+
+Communication strategy:  We want to highlight that growth patterns on weekdays and 
+weekends are quite different.  So even though impacts on weekdays may have stabilized, 
+there is a significant change happening on weekends that officials need to be aware of. 
+These graphs also help officials to be aware of when usage is at a maximum, to help 
+keep the system operating smoothly. 
+
+Page three -- operational excellence
+
+5)  Trip start and end maps -- two maps (with zip code overlays) showing the 
+total number of trip starts and trip ends by station, coded with a divergent 
+color scheme to separate stations with high traffic from those with low traffic.  
+A slider will enable either current year or previous year data to be viewed 
+interactively.  
+
+Data strategy:  Use the same hourly data, but include in the ETL pipeline an 
+hourly compilation of trips by station end-point, not just starting-point.  Use 
+Jupyter Notebook and Tableau as before with this data set.
+
+Communication strategy:  We want to remind stakeholders that the usage patterns 
+vary greatly from one station to another.  Some stations are very busy, we want 
+these to stand out.  Fortunately, the skewed data distribution does this with just 
+a linear colormap.  
+
+6) Station peak departures in 2019 and 2019.  This bar chart will initially show 
+stations ranked by their maximum number of trip starts in any given hour, and compare 
+this "peak" value between 2019 and 2018.  A map action will filter the list to show 
+any given station if the stakeholder clicks on that station.  
+
+Data strategy:  the hourly data as constructed for other purposes will enable this one 
+also, with Tableau handling the aggregation and filtering
+
+Communication strategy:  A very busy station is an operational risk, but what the 
+data shows is that although system usage is increasing overall, the busiest stations 
+got less busy in 2019 (for instance, adding more stations nearby helped to reduce peak 
+traffic at many of the businest stations.)  This illustrates how the program is being 
+managed well.  The map action here allows stakeholders to linger, or zero in on 
+stations of particular interest to them.  
+
+Page four -- benefits  
+
+7)  CO2 emissions reduced -- a simple bar graph showing how much CO2 emissions 
+have been reduced on a monthly basis, comparing this year to previous years.  
+
+Data strategy:  the daily summary provides an estimate of total miles traveled.  
+In Tableau, we can calculate a field to convert this to CO2 savings, based on 
+the fact that we are displacing a mix of travel.  Based on previous studies of 
+travel in New York City, the area served by the program mainly uses subways / rail 
+(80%) and buses (20%) for the kind of trips that bike travel likely displaces.  
+Most car trips are over much greater distances than bikes cover, and taxi trips are 
+a very small percentage (too small to matter given the approximations involved).  
+Bike travel does produce some indirect CO2 emissions (about 20 g/mile) and these 
+are taken into account to be conservative.  (The net savings is about 100 g per 
+mile traveled.) 
+
+Communications strategy:  CO2 reduction is getting a lot of attention at the local 
+level currently, so this metric is important for stakeholderrs to know.  The 
+graph needs to be simpe so as to give stakeholders one easy-to-remember number.  
+
+8) Commuters using the program -- a graph showing how many people are using the 
+program to commute to work, comparing the current and previous year. 
+
+Data strategy:  Looking at the hourly data, it is possible to identify the "commuter 
+spike" that happens only on weekdays during commuting hours.  The morning spike 
+is sharpest; it stands out against a constinuously increasing baseline that appears 
+linear on weekends.  To get this estimate, we can use another ETL that will take 
+the output from the hourly analysis and add up the trips in the "commuter spike", 
+subtracting out the baseline.  The result is a daily estimate of the number of 
+commuters.  This daily data is then easily imported into Tableau.  THe calculation 
+can be done for the current year and compared to the previous year.  Growth in 
+this case is less important than showing that usage is consistent, so two years 
+should be sufficient.  The number of daily commuters tends to have a skewed distribution, 
+because adverse weather occasionally results in very low numbers, so the median 
+is the best measure.  
+
+Communication strategy:  Here we want to make a different kind of argument than 
+is typically associated with CO2.  We want to point out that a commuter on a bike 
+is saving the city resources by not using crowded subways, buses, etc. at peak times.  
+Again, we want a simple argument -- here's how many fewer commuters were packed into 
+the subway at peak hours due to this program.
+
+9) Weight gain avoided -- a graph showing the health benefits of the program for 
+the riders.  
+
+Data strategy:  The milesage data can be used with a simple formula to determine 
+calories burned, and from known data on weight loss, how many pounds of weight gain 
+were avoided.  This measure is difficult to quantify exactly, but it is easy for 
+stakeholders to understand how riding a bike will avoid weight gain, and to intuit that 
+weight gain ultimately will cost the city health dollars.  Pounds of weight gain 
+avoided is also a big number, so it's useful for arguing persuasively for an impact.  
+There are many other benefits, such as a 40% reduction in risk of heart disease and 
+cancer, but these are more difficult to put into a simple chart that reflects a 
+single month of data (these effects take many years).  Avoided weight gain, however, 
+is immediate.
+
+Communications strategy:  We want an argument that is simple, but different than 
+an environmental or infrastructure argument, but that is easy to relate to.  
+
+Page five -- special topic
+
+Gender equality has been chosen as a special topic because of the high level of 
+attention is has been getting.  
+
+10) Geography of women bike riders -- an interactive map that uses the same 
+color scheme as the others, but shows the percentage of riders that identify as 
+female, and lets stakeholders compare 2018 and 2019.  It shows that in many places 
+the majority or riders are women.  
+
+Data strategy:  as part of hourly data processing, the fraction of riders that
+identify as female can be computed per station per hour.  In Tableau, a special 
+aggregation formula that weights the hourly data on a per ride basis can be used 
+to get aggregate percentages.
+
+Communication strategy:  As a special topic at the end of the visualization, this 
+one can be designed to allow the stakeholders to explore.  The message we want 
+to get across is that women are an important bike-riding constituency.  
+
+11) Graph of women rider percentage by day of week, current and previous year. 
+This plot is linked to the map so that if the stakeholder clicks on a particular 
+station, the data can be shown for that particular station.  
+
+Data strategy:  Tableau can aggregate using the aforementioned data.
+
+Communication strategy:  The data shows that women riders are a significantly 
+higher (and growing) percentage of weekend riders.  This helps to link the
+"special topic" to the "main topic" of growth, because weekend riders are a 
+growth area, and the gender of weekend riders is more balanced, so stakeholders 
+can realize that women riders represent an important growth avenue.  We leave 
+this up to the stakeholder to figure out, so that they can have some ownership 
+of the analysis. 
+
+
 
 
 
