@@ -12,6 +12,12 @@ downloaded into the data/trips sub-directory, along with data for the same month
 preceding year, the notebooks will output data that can be used to refresh the visualizations 
 in Tableau with the latest data.  
 
+NOTE:  Due to large file size, the data/trips sub-directory is not present in the GitHub repo.
+You will need to create this sub-directory within the "data" folder, and then download the 
+files from the Citibike web site at https://s3.amazonaws.com/tripdata/index.html.  Each 
+monthly data file is more than 300 MB, so plan accordingly. For convenience, a set of daily 
+rider data files is provided in the repo.  
+
 Note that the raw data files need to be downloaded from the New York Citibike web site, at:
 https://s3.amazonaws.com/tripdata/index.html   (trip data)
 https://www.citibikenyc.com/system-data    (daily ridership data, aggregated by quarter)
